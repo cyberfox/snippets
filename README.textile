@@ -1,0 +1,7 @@
+h1. Random code snippets, classes, test files, etc.
+
+There's no guarantee that anything in here will actually work.
+
+Mostly it's a home for experiments and quick tests.
+
+Things in the <code>com/cyberfox</code> directory are Java.
