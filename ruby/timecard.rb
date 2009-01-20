@@ -1,12 +1,14 @@
 require 'rubygems'
 
-# This requires the 'cyberfox-gchart' gem, as the standard gchart gem
-# is woefully broken for this kind of graph.  Broken to the point that
-# it's an inherent design choice that doesn't work well for this kind
-# of chart.  I'm sure that the cyberfox-gchart gem won't work well for
-# many kinds of charts, as well.
+# This requires the 'cyberfox-gchart' gem (0.5.4), as the standard
+# gchart gem is woefully broken for this kind of graph.  Broken to the
+# point that it's an inherent design choice that doesn't work well for
+# this kind of chart.  I'm sure that the cyberfox-gchart gem won't
+# work well for many kinds of charts, as well.
 
 require 'gchart'
+
+GChart.encoding = :text
 
 chart = GChart.scatter do |g|
   # Mon @ 1am, Tue @ 4am, Wed @ 7am, Thu @ 11am, Fri @ 3pm, Sat @ 7pm, Sun @ 11pm
