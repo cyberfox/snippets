@@ -84,7 +84,7 @@ class DBRow {
 
   public:
     DBRow(MYSQL_ROW newRow, const field_map &fieldnames);
-    string DBRow::getCol(const field_map &names, int i);
+    string getCol(const field_map &names, int i);
     ~DBRow() { }
     const string getField(const string &field);
     const string dumpFields(const string &wraptag, const string &prefix="", const string &indent="  ", bool encase=false);
