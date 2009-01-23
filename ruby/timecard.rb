@@ -8,32 +8,57 @@ require 'rubygems'
 
 require 'gchart'
 
-GChart.encoding = :text
+def make_timecard(triples)
+  xd = triples.collect {|triple| triple[0] }
+  yd = triples.collect {|triple| triple[1] }
+  sizes = triples.collect {|triple| triple[2] }
 
-chart = GChart.scatter do |g|
-  # Mon @ 1am, Tue @ 4am, Wed @ 7am, Thu @ 11am, Fri @ 3pm, Sat @ 7pm, Sun @ 11pm
-  #  points = [[1, 7, 1], [4, 6, 2], [7, 5, 3], [11, 4, 4], [15, 3, 5], [19, 2, 6], [23, 1, 7]]
-  xd = [1, 4, 7, 11, 15, 19, 23]
-  yd = [7, 6, 5,  4,  3,  2,  1]
-  sizes = (1..7).to_a
+  GChart.encoding = :text
 
-  g.data = [xd, yd, sizes]
+  chart = GChart.scatter do |g|
+    g.data = [xd, yd, sizes]
 
-  g.axis(:left) do |axis_left|
-    axis_left.labels = ['', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun', ''].reverse
+    g.axis(:left) do |axis_left|
+      axis_left.labels = ['', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', '']
+    end
+
+    g.axis(:bottom) do |axis_right|
+      axis_right.labels = ['', "12am"] + (1..11).to_a + ["12pm"] + (1..11).to_a + ['']
+    end
+
+    g.extras = { 'chm' => 'o,333333,1,1.0,25.0', 'chds' => "-1,24,0,8,0,#{sizes.max}", 'chf' => 'bg,s,efefef' }
+
+    g.colors = [ :black ]
+    g.width=800
+    g.height=300
   end
 
-  g.axis(:bottom) do |axis_right|
-    axis_right.labels = ['', "12am"] + (1..11).to_a + ["12pm"] + (1..11).to_a + ['']
-  end
-
-  g.extras = { 'chm' => 'o,333333,1,1.0,25.0', 'chds' => '-1,24,0,8,0,9' }
-
-  g.colors = [ :black ]
-  g.width=800
-  g.height=300
+#  puts URI.decode(chart.to_url)
+  chart.write("chart.png")
 end
 
-puts URI.decode(chart.to_url)
-chart.write("chart.png")
-system('open chart.png')
+def git_timecard(path = '.')
+  log = `git log --pretty=format:%at #{path}`.split
+  count = []
+  8.times { count << [0]*25}
+
+  pairs = log.collect do |ut|
+    logtime = Time.at(ut.to_i)
+    count[logtime.wday+1][logtime.hour] += 1
+    [logtime.wday+1, logtime.hour]
+  end.uniq
+
+  max = 0
+  triples = pairs.collect do |pair|
+    total = count[pair.first][pair.last]
+    max = [max, total].max
+    [pair.last, pair.first, total]
+  end
+
+  make_timecard(triples)
+end
+
+if ARGV[0]
+  git_timecard(ARGV[0])
+  system('open chart.png')
+end
