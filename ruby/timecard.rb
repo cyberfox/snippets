@@ -37,8 +37,11 @@ def make_timecard(triples)
   chart.write("chart.png")
 end
 
-def git_timecard(path = '.')
-  log = `git log --pretty=format:%at #{path}`.split
+def git_timecard(path = nil)
+  if path
+    Dir.chdir path
+  end
+  log = `git log --pretty=format:%at}`.split
   count = []
   8.times { count << [0]*25}
 
@@ -52,6 +55,8 @@ def git_timecard(path = '.')
   triples = pairs.collect do |pair|
     total = count[pair.first][pair.last]
     max = [max, total].max
+
+    # Swap, because in the resultant graph hours are 'x', and days are 'y'.
     [pair.last, pair.first, total]
   end
 
