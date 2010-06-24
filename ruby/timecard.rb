@@ -1,3 +1,4 @@
+#!/usr/bin/env ruby
 require 'rubygems'
 
 # This requires the 'cyberfox-gchart' gem (0.5.4), as the standard
