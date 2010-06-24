@@ -19,7 +19,7 @@ void test_nearby_precision(Tableau &t) {
   float close[] = {g, h};
 
   cout << "Finding 2.0 in an array of two floats bracketing it (one float step away on either side): " << t.find(2.0f, close, 2) << EOL;
-  cout << "Matching a float two steps away from " << h << " should fail: " << t.find(h, close, 1) << EOL;
+  cout << "Matching a float two steps away from " << h << " should be false: " << t.find(h, close, 1) << EOL;
   cout << "Matching a float one step away from " << f << " should succeed: " << t.find(f, close, 1) << EOL;
 }
 
