@@ -3,8 +3,8 @@
 
 /**
  * @file      DB.cpp
- * @copyright Copyright (c) 2004 Friendster, Inc.
- * @author    Morgan Schweers <morgan@friendster.com>
+ * @copyright Copyright (c) 2004 CyberFOX Software, Inc.
+ * @author    Morgan Schweers <cyberfox@gmail.com>
  * @date      Mon Aug 30 17:03:38 2004
  * 
  * @brief     Database abstraction so the code isn't littered with MySQLisms.

@@ -3,8 +3,8 @@
 
 /**
  * @file      DB.h
- * @copyright Copyright (c) 2004 Friendster, Inc.
- * @author    Morgan Schweers <morgan@friendster.com>
+ * @copyright Copyright (c) 2004 Morgan Schweers
+ * @author    Morgan Schweers <cyberfox@gmail.com>
  * @date      Mon Aug 30 17:03:05 2004
  * 
  * @brief     Database abstraction, so the code isn't littered with MySQLisms.

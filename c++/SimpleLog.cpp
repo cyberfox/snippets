@@ -12,8 +12,8 @@
 
 /**
  * @file      SimpleLog.cpp
- * @copyright Copyright (c) 2004 Friendster, Inc.
- * @author    Morgan Schweers <morgan@friendster.com>
+ * @copyright Copyright (c) 2004 CyberFOX Software, Inc.
+ * @author    Morgan Schweers <cyberfox@gmail.com>
  * @date      Thu Sep  2 16:45:51 2004
  * 
  * @brief     Implementation of the minimal logging class,

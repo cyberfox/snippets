@@ -10,8 +10,8 @@
 
 /**
  * @file      SimpleLog.h
- * @copyright Copyright (c) 2004 Friendster, Inc.
- * @author    Morgan Schweers <morgan@friendster.com>
+ * @copyright Copyright (c) 2004 CyberFOX Software, Inc.
+ * @author    Morgan Schweers <cyberfox@gmail.com>
  * @date      Mon Aug 30 17:24:31 2004
  * 
  * @brief     Necessary minimal logging class, to support keeping
